@@ -1,0 +1,200 @@
+fileFormatVersion: 2
+guid: c520703af9a3e9f48b738bcaf0702736
+timeCreated: 1506241260
+licenseType: Free
+ModelImporter:
+  serializedVersion: 21
+  fileIDToRecycleName:
+    100000: //RootNode
+    100002: dreseer-side-board#1_001
+    100004: dreseer-side-board#1_003
+    100006: dresser-back#1_001
+    100008: dresser-board-top#1_001
+    100010: dresser-board-top#1_002
+    100012: dresser-drawer-bottom_001
+    100014: dresser-drawer-bottom_002
+    100016: dresser-drawer-front#1_001
+    100018: dresser-drawer-front-board_001
+    100020: dresser-drawer-front-board_002
+    100022: dresser-drawer-front-board_003
+    100024: dresser-drawer-front-board_004
+    100026: dresser-drawer-front_001
+    100028: dresser-drawer-side_001
+    100030: dresser-drawer-side_002
+    100032: dresser-top#1_001
+    100034: dresser-top#1_002
+    100036: leg-1#3_001
+    100038: leg-1#3_002
+    100040: leg-1#3_003
+    100042: leg-1#3_004
+    100044: rucka#1_001
+    100046: rucka#1_002
+    400000: //RootNode
+    400002: dreseer-side-board#1_001
+    400004: dreseer-side-board#1_003
+    400006: dresser-back#1_001
+    400008: dresser-board-top#1_001
+    400010: dresser-board-top#1_002
+    400012: dresser-drawer-bottom_001
+    400014: dresser-drawer-bottom_002
+    400016: dresser-drawer-front#1_001
+    400018: dresser-drawer-front-board_001
+    400020: dresser-drawer-front-board_002
+    400022: dresser-drawer-front-board_003
+    400024: dresser-drawer-front-board_004
+    400026: dresser-drawer-front_001
+    400028: dresser-drawer-side_001
+    400030: dresser-drawer-side_002
+    400032: dresser-top#1_001
+    400034: dresser-top#1_002
+    400036: leg-1#3_001
+    400038: leg-1#3_002
+    400040: leg-1#3_003
+    400042: leg-1#3_004
+    400044: rucka#1_001
+    400046: rucka#1_002
+    2300000: dreseer-side-board#1_001
+    2300002: dreseer-side-board#1_003
+    2300004: dresser-back#1_001
+    2300006: dresser-board-top#1_001
+    2300008: dresser-board-top#1_002
+    2300010: dresser-drawer-bottom_001
+    2300012: dresser-drawer-bottom_002
+    2300014: dresser-drawer-front#1_001
+    2300016: dresser-drawer-front-board_001
+    2300018: dresser-drawer-front-board_002
+    2300020: dresser-drawer-front-board_003
+    2300022: dresser-drawer-front-board_004
+    2300024: dresser-drawer-front_001
+    2300026: dresser-drawer-side_001
+    2300028: dresser-drawer-side_002
+    2300030: dresser-top#1_001
+    2300032: dresser-top#1_002
+    2300034: leg-1#3_001
+    2300036: leg-1#3_002
+    2300038: leg-1#3_003
+    2300040: leg-1#3_004
+    2300042: rucka#1_001
+    2300044: rucka#1_002
+    3300000: dreseer-side-board#1_001
+    3300002: dreseer-side-board#1_003
+    3300004: dresser-back#1_001
+    3300006: dresser-board-top#1_001
+    3300008: dresser-board-top#1_002
+    3300010: dresser-drawer-bottom_001
+    3300012: dresser-drawer-bottom_002
+    3300014: dresser-drawer-front#1_001
+    3300016: dresser-drawer-front-board_001
+    3300018: dresser-drawer-front-board_002
+    3300020: dresser-drawer-front-board_003
+    3300022: dresser-drawer-front-board_004
+    3300024: dresser-drawer-front_001
+    3300026: dresser-drawer-side_001
+    3300028: dresser-drawer-side_002
+    3300030: dresser-top#1_001
+    3300032: dresser-top#1_002
+    3300034: leg-1#3_001
+    3300036: leg-1#3_002
+    3300038: leg-1#3_003
+    3300040: leg-1#3_004
+    3300042: rucka#1_001
+    3300044: rucka#1_002
+    4300000: dresser-top#1_002
+    4300002: leg-1#3_004
+    4300004: dresser-board-top#1_002
+    4300006: dresser-back#1_001
+    4300008: dresser-top#1_001
+    4300010: dresser-board-top#1_001
+    4300012: leg-1#3_003
+    4300014: dreseer-side-board#1_003
+    4300016: leg-1#3_002
+    4300018: leg-1#3_001
+    4300020: dresser-drawer-front-board_004
+    4300022: dresser-drawer-front-board_003
+    4300024: dresser-drawer-bottom_002
+    4300026: dresser-drawer-front_001
+    4300028: dresser-drawer-side_002
+    4300030: rucka#1_002
+    4300032: dreseer-side-board#1_001
+    4300034: rucka#1_001
+    4300036: dresser-drawer-front-board_002
+    4300038: dresser-drawer-front-board_001
+    4300040: dresser-drawer-bottom_001
+    4300042: dresser-drawer-front#1_001
+    4300044: dresser-drawer-side_001
+    9500000: //RootNode
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

@@ -1,0 +1,245 @@
+fileFormatVersion: 2
+guid: af191dc306501fd4097b8b96725c41bd
+timeCreated: 1506241259
+licenseType: Free
+ModelImporter:
+  serializedVersion: 21
+  fileIDToRecycleName:
+    100000: //RootNode
+    100002: board-back_001
+    100004: board-bottom_001
+    100006: board-front-top#1_001
+    100008: board-front-top#1_002
+    100010: board-front-top#1_003
+    100012: board-front-top#1_004
+    100014: board-front-top#1_005
+    100016: board-front-top#1_006
+    100018: board-front-top#2_001
+    100020: board-front-top_001
+    100022: board-top_001
+    100024: middle-board_001
+    100026: pull-roll-1_001
+    100028: pull-roll-1_002
+    100030: pull-roll-1_003
+    100032: pull-roll-1_004
+    100034: pull-roll-1_005
+    100036: pull-roll-1_006
+    100038: pull-roll-1_007
+    100040: pull-roll-1_008
+    100042: pull-roll-1_009
+    100044: pull-roll-1_010
+    100046: pull-roll-1_011
+    100048: pull-roll-1_012
+    100050: pull-roll-2_001
+    100052: pull-roll-2_002
+    100054: pull-roll-2_003
+    100056: pull-roll-2_004
+    100058: pull-roll-2_005
+    100060: pull-roll-2_006
+    100062: side-board_001
+    100064: side-board_002
+    400000: //RootNode
+    400002: board-back_001
+    400004: board-bottom_001
+    400006: board-front-top#1_001
+    400008: board-front-top#1_002
+    400010: board-front-top#1_003
+    400012: board-front-top#1_004
+    400014: board-front-top#1_005
+    400016: board-front-top#1_006
+    400018: board-front-top#2_001
+    400020: board-front-top_001
+    400022: board-top_001
+    400024: middle-board_001
+    400026: pull-roll-1_001
+    400028: pull-roll-1_002
+    400030: pull-roll-1_003
+    400032: pull-roll-1_004
+    400034: pull-roll-1_005
+    400036: pull-roll-1_006
+    400038: pull-roll-1_007
+    400040: pull-roll-1_008
+    400042: pull-roll-1_009
+    400044: pull-roll-1_010
+    400046: pull-roll-1_011
+    400048: pull-roll-1_012
+    400050: pull-roll-2_001
+    400052: pull-roll-2_002
+    400054: pull-roll-2_003
+    400056: pull-roll-2_004
+    400058: pull-roll-2_005
+    400060: pull-roll-2_006
+    400062: side-board_001
+    400064: side-board_002
+    2300000: board-back_001
+    2300002: board-bottom_001
+    2300004: board-front-top#1_001
+    2300006: board-front-top#1_002
+    2300008: board-front-top#1_003
+    2300010: board-front-top#1_004
+    2300012: board-front-top#1_005
+    2300014: board-front-top#1_006
+    2300016: board-front-top#2_001
+    2300018: board-front-top_001
+    2300020: board-top_001
+    2300022: middle-board_001
+    2300024: pull-roll-1_001
+    2300026: pull-roll-1_002
+    2300028: pull-roll-1_003
+    2300030: pull-roll-1_004
+    2300032: pull-roll-1_005
+    2300034: pull-roll-1_006
+    2300036: pull-roll-1_007
+    2300038: pull-roll-1_008
+    2300040: pull-roll-1_009
+    2300042: pull-roll-1_010
+    2300044: pull-roll-1_011
+    2300046: pull-roll-1_012
+    2300048: pull-roll-2_001
+    2300050: pull-roll-2_002
+    2300052: pull-roll-2_003
+    2300054: pull-roll-2_004
+    2300056: pull-roll-2_005
+    2300058: pull-roll-2_006
+    2300060: side-board_001
+    2300062: side-board_002
+    3300000: board-back_001
+    3300002: board-bottom_001
+    3300004: board-front-top#1_001
+    3300006: board-front-top#1_002
+    3300008: board-front-top#1_003
+    3300010: board-front-top#1_004
+    3300012: board-front-top#1_005
+    3300014: board-front-top#1_006
+    3300016: board-front-top#2_001
+    3300018: board-front-top_001
+    3300020: board-top_001
+    3300022: middle-board_001
+    3300024: pull-roll-1_001
+    3300026: pull-roll-1_002
+    3300028: pull-roll-1_003
+    3300030: pull-roll-1_004
+    3300032: pull-roll-1_005
+    3300034: pull-roll-1_006
+    3300036: pull-roll-1_007
+    3300038: pull-roll-1_008
+    3300040: pull-roll-1_009
+    3300042: pull-roll-1_010
+    3300044: pull-roll-1_011
+    3300046: pull-roll-1_012
+    3300048: pull-roll-2_001
+    3300050: pull-roll-2_002
+    3300052: pull-roll-2_003
+    3300054: pull-roll-2_004
+    3300056: pull-roll-2_005
+    3300058: pull-roll-2_006
+    3300060: side-board_001
+    3300062: side-board_002
+    4300000: pull-roll-2_006
+    4300002: pull-roll-1_012
+    4300004: pull-roll-1_011
+    4300006: pull-roll-2_005
+    4300008: pull-roll-1_010
+    4300010: pull-roll-1_009
+    4300012: pull-roll-2_004
+    4300014: pull-roll-1_008
+    4300016: pull-roll-1_007
+    4300018: pull-roll-2_003
+    4300020: pull-roll-1_006
+    4300022: pull-roll-1_005
+    4300024: pull-roll-2_002
+    4300026: pull-roll-1_004
+    4300028: pull-roll-1_003
+    4300030: board-front-top#1_006
+    4300032: side-board_002
+    4300034: middle-board_001
+    4300036: pull-roll-2_001
+    4300038: pull-roll-1_002
+    4300040: pull-roll-1_001
+    4300042: board-front-top#1_005
+    4300044: board-front-top#1_004
+    4300046: board-front-top#1_003
+    4300048: board-bottom_001
+    4300050: board-front-top#1_002
+    4300052: board-front-top#2_001
+    4300054: board-back_001
+    4300056: board-front-top#1_001
+    4300058: board-front-top_001
+    4300060: side-board_001
+    4300062: board-top_001
+    9500000: //RootNode
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
