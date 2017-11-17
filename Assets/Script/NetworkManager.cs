@@ -12,11 +12,12 @@ public class NetworkManager : MonoBehaviour
     public InputField playerNameInput,roomNameInput;
     public GameObject player;
     public SocketIOComponent socket;
-
+    
     private static string roomKey;
     private AddressJson addressJson;
     private P2PNetworkManager p2pManager;
     private string talkAddress = "";
+    private SpeechQueue speechQueue;
     // Use this for initialization
     void Awake()
     {
@@ -29,7 +30,7 @@ public class NetworkManager : MonoBehaviour
 
     private void Start()
     {
-        p2pManager = this.GetComponent<P2PNetworkManager>();
+        p2pManager = new P2PNetworkManager();
     }
 
     public static NetworkManager getInstance()
@@ -39,7 +40,7 @@ public class NetworkManager : MonoBehaviour
 
     private void InitServer()
     {
-        socket.On("player address", OnPlayerAddress);
+        //socket.On("player address", OnPlayerAddress);
         socket.On("create room", OnCreateRoom);
         socket.On("room list", OnRoomShowList);
         socket.On("rejected room", OnRejectedRoom);
@@ -52,11 +53,11 @@ public class NetworkManager : MonoBehaviour
 
         socket.On("ClickEvent", MClickEvent);
     }
-
-    public void GetServer(string a)
-    {
-        Debug.Log(a);
-    }
+    
+    //void OnApplicationQuit()
+    //{
+    //    p2pManager.Dispose();
+    //}
 
     private bool IsCorrectCompanyName(string s)
     {
@@ -82,6 +83,28 @@ public class NetworkManager : MonoBehaviour
     public void JoinRoom(string _roomKey)
     {
         StartCoroutine(CheckRoom(_roomKey));
+    }
+
+    IEnumerator SpeechOther()
+    {
+        while (true)
+        {
+            if (speechQueue.Check())
+            {
+                float[] _buffer = speechQueue.Pop();
+                GameObject o = GameObject.Find(addressJson.name) as GameObject;
+                if (o != null)
+                {
+                    AudioSource audioSource = o.GetComponent<AudioSource>();
+                    audioSource.clip.SetData(_buffer, 0);
+                }
+                else
+                {
+                    StopCoroutine(SpeechOther());
+                }
+            }
+            yield return new WaitForSeconds(1);
+        }
     }
 
     #region Commands
@@ -141,11 +164,11 @@ public class NetworkManager : MonoBehaviour
         socket.Emit("player turn", new JSONObject(data));
     }
 
-    public void SendVoice(float[] _audio)
-    {
-        if (addressJson != null && p2pManager.GetConnect())
-            p2pManager.Send(_audio);
-    }
+    //public void SendVoice(float[] _audio)
+    //{
+    //    if (addressJson != null && p2pManager.GetConnect())
+    //        p2pManager.Send(_audio);
+    //}
 
     public void StartChat()
     {
@@ -163,15 +186,13 @@ public class NetworkManager : MonoBehaviour
     #endregion
 
     #region Listening
-    public void OtherPlayerVoice(float[] _buffer)
-    {
-        if (addressJson != null && p2pManager.GetConnect())
-        {
-            GameObject o = GameObject.Find(addressJson.name) as GameObject;
-            AudioSource audioSource = o.GetComponent<AudioSource>();
-            audioSource.clip.SetData(_buffer, 0);
-        }
-    }
+    //public void PushOtherSpeech(float[] _buffer)
+    //{
+    //    if (addressJson != null && p2pManager.GetConnect())
+    //    {
+    //        speechQueue.Push(_buffer);
+    //    }
+    //}
 
     void MClickEvent(SocketIOEvent socketIOEvent)
     {
@@ -179,18 +200,23 @@ public class NetworkManager : MonoBehaviour
         Debug.Log(data);
     }
 
-    void OnPlayerAddress(SocketIOEvent socketIOEvent)
-    {
-        string data = socketIOEvent.data.ToString();
-        addressJson = JsonUtility.FromJson<AddressJson>(data);
-        if (talkAddress != addressJson.address)
-        {
-            if (p2pManager.GetConnect())
-                p2pManager.Dispose();
-            talkAddress = addressJson.address;
-            p2pManager.CreateP2PNetworkManager(addressJson.address, addressJson.port);
-        }
-    }
+    //void OnPlayerAddress(SocketIOEvent socketIOEvent)
+    //{
+    //    string data = socketIOEvent.data.ToString();
+    //    addressJson = JsonUtility.FromJson<AddressJson>(data);
+    //    if (talkAddress != addressJson.address)
+    //    {
+    //        if (p2pManager.GetConnect())
+    //        {
+    //            p2pManager.Dispose();
+    //            speechQueue = null;
+    //        }
+    //        talkAddress = addressJson.address;
+    //        p2pManager.CreateP2PNetworkManager(addressJson.address, addressJson.port);
+    //        //speechQueue = new SpeechQueue();
+    //        //StartCoroutine(SpeechOther());
+    //    }
+    //}
 
     void OnRejectedRoom(SocketIOEvent socketIOEvent)
     {
@@ -304,6 +330,7 @@ public class NetworkManager : MonoBehaviour
         UserJSON userJSON = UserJSON.CreateFromJson(data);
         addressJson = null;
         Destroy(GameObject.Find(userJSON.name));
+        StopCoroutine(SpeechOther());
     }
     #endregion
 

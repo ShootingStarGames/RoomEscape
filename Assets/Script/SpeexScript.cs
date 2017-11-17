@@ -31,7 +31,7 @@ public class SpeexScript : MonoBehaviour {
     {
         SetMode();
         speexEncoder = new SpeexEncoder(mode);
-        speexEncoder.Quality = 1;
+        speexEncoder.Quality = 3;
     }
     public void CreateDecoder()
     {

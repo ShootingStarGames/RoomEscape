@@ -10,8 +10,8 @@ public class ControllManager : MonoBehaviour {
     private RotationAxes axes = RotationAxes.MouseXAndY;
     private float sensitivityX = 5F;
     private float sensitivityY = 5F;
-    private float minimumX = -360F;
-    private float maximumX = 360F;
+    //private float minimumX = -360F;
+    //private float maximumX = 360F;
     private float minimumY = -80F;
     private float maximumY = 60F;
     private float speed = 2f;
@@ -155,15 +155,19 @@ public class ControllManager : MonoBehaviour {
     }
     #endregion
     // Use this for initialization
-    void Start () {
+    void Start()
+    {
         oldPositon = transform.position;
         oldRotation = transform.rotation;
         currentPositon = oldPositon;
         currentRotation = oldRotation;
 
         this.GetComponent<MeshRenderer>().materials[0].color = Random.ColorHSV(0f, 1f, 1f, 1f, 0.5f, 1f);
-        if(isMine)
-            Screen.lockCursor = true;
+        if (isMine)
+        {
+            Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
+        }
     }
 
     // Update is called once per frame
@@ -173,7 +177,8 @@ public class ControllManager : MonoBehaviour {
         if (Input.GetKey(KeyCode.Escape))
         {
             UIManager.instance.OpenStopPanel();
-            Screen.lockCursor = false;
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
             isMine = false;
         }
         InputFunc();
