@@ -31,7 +31,7 @@ public class MicrophoneManager : MonoBehaviour
         while (!(Microphone.GetPosition(null) > 0)) { }
         _aud.Play();
         voice = new float[_aud.clip.samples];
-        NetworkManager.instance.StartChat();
+        //NetworkManager.instance.StartChat();
     }
 
     private void RecordVoice()
@@ -39,7 +39,7 @@ public class MicrophoneManager : MonoBehaviour
         if (_aud.clip == null)
             return;
         _aud.clip.GetData(voice, 0);
-        NetworkManager.instance.SendVoice(voice);
+        //NetworkManager.instance.SendVoice(voice);
     }
 
     private void StopRecord()

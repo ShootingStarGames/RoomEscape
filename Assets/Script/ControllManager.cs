@@ -21,7 +21,7 @@ public class ControllManager : MonoBehaviour {
     Quaternion currentRotation, oldRotation;
     float rotationY = 0F;
     GameObject obj;
-
+    
     #region Controll
     void InputFunc()
     {
@@ -94,28 +94,35 @@ public class ControllManager : MonoBehaviour {
 
     void InputMouseClick()
     {
-        if (Input.GetKeyDown(KeyCode.E))
+        if (Input.GetKeyDown(KeyCode.E)) // press E button
         {
             RaycastHit hitInfo = new RaycastHit();
             float distance = 1f;
             Ray ray = myCamera.ScreenPointToRay(Input.mousePosition);
+            int index = 0;
             if (Physics.Raycast(ray, out hitInfo, distance))
             {
                 switch (hitInfo.transform.gameObject.name)
                 {
                     case "Door_":
                         obj = hitInfo.transform.parent.gameObject;
-                        if (obj.transform.eulerAngles.y == 0 && t1door)
-                            ObjectManager.instance.SpinOpenObj(obj);
-                        else if (obj.transform.eulerAngles.y == 90)
-                            ObjectManager.instance.SpinCloseObj(obj);
+                        index = ObjectManager.instance.getObjectIndex(obj);
+                        NetworkManager.instance.SendObject(index);
+
+                        //if (obj.transform.eulerAngles.y == 0 && t1door)
+                        //    ObjectManager.instance.SpinOpenObj(obj);
+                        //else if (obj.transform.eulerAngles.y == 90)
+                        //    ObjectManager.instance.SpinCloseObj(obj);
                         break;
                     case "Drawer_":
                         obj = hitInfo.transform.parent.gameObject;
-                        if (obj.transform.localPosition.z == 0)
-                            ObjectManager.instance.DrawOpenObj(obj);
-                        else if (obj.transform.localPosition.z == 0.2f)
-                            ObjectManager.instance.DrawCloseObj(obj);
+                        index = ObjectManager.instance.getObjectIndex(obj);
+                        NetworkManager.instance.SendObject(index);
+
+                        //if (obj.transform.localPosition.z == 0)
+                        //    ObjectManager.instance.DrawOpenObj(obj);
+                        //else if (obj.transform.localPosition.z == 0.2f)
+                        //    ObjectManager.instance.DrawCloseObj(obj);
                         break;
                     default:
                         break;
@@ -123,35 +130,35 @@ public class ControllManager : MonoBehaviour {
             }
         }
 
-        if (Input.GetMouseButtonDown(0))
-        {
-            RaycastHit hitInfo = new RaycastHit();
-            float distance = 1f;
-            Ray ray = myCamera.ScreenPointToRay(Input.mousePosition);
-            if (Physics.Raycast(ray, out hitInfo, distance))
-            {
-                switch (hitInfo.transform.gameObject.name)
-                {
-                    case "table_":
-                        obj = hitInfo.transform.gameObject;
-                        if (obj.transform.eulerAngles.y == 0) { 
-                            ObjectManager.instance.SpinOpenObj(obj);
-                            t1door = true;
-                        }
-                        else if (obj.transform.eulerAngles.y == 90) { 
-                            ObjectManager.instance.SpinCloseObj(obj);
-                            t1door = false;
-                        }
-                        break;
-                    case "st1_memo1_":
-                        obj = hitInfo.transform.gameObject;
-                        ObjectManager.instance.OpenDiscription(obj);
-                        break;
-                    default:
-                        break;
-                }
-            }
-        }
+        //if (Input.GetMouseButtonDown(0))
+        //{
+        //    RaycastHit hitInfo = new RaycastHit();
+        //    float distance = 1f;
+        //    Ray ray = myCamera.ScreenPointToRay(Input.mousePosition);
+        //    if (Physics.Raycast(ray, out hitInfo, distance))
+        //    {
+        //        switch (hitInfo.transform.gameObject.name)
+        //        {
+        //            case "table_":
+        //                obj = hitInfo.transform.gameObject;
+        //                if (obj.transform.eulerAngles.y == 0) { 
+        //                    ObjectManager.instance.SpinOpenObj(obj);
+        //                    t1door = true;
+        //                }
+        //                else if (obj.transform.eulerAngles.y == 90) { 
+        //                    ObjectManager.instance.SpinCloseObj(obj);
+        //                    t1door = false;
+        //                }
+        //                break;
+        //            case "st1_memo1_":
+        //                obj = hitInfo.transform.gameObject;
+        //                ObjectManager.instance.OpenDiscription(obj);
+        //                break;
+        //            default:
+        //                break;
+        //        }
+        //    }
+        //}
     }
     #endregion
     // Use this for initialization

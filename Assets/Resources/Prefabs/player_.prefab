@@ -21,7 +21,7 @@ GameObject:
   - component: {fileID: 4993150267096990}
   - component: {fileID: 23432773332712352}
   - component: {fileID: 102607057338539372}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Player Name_
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -39,7 +39,7 @@ GameObject:
   - component: {fileID: 33851239754168418}
   - component: {fileID: 135309863437196182}
   - component: {fileID: 23848666013203150}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: LeftEye_
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -57,7 +57,7 @@ GameObject:
   - component: {fileID: 33190047786373736}
   - component: {fileID: 65514092625634564}
   - component: {fileID: 23789505375088976}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Mouse_
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -75,7 +75,7 @@ GameObject:
   - component: {fileID: 33829792677895032}
   - component: {fileID: 135203112881329754}
   - component: {fileID: 23991912966244756}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: RightEye_
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -97,7 +97,7 @@ GameObject:
   - component: {fileID: 82768172562275872}
   - component: {fileID: 114262066354308382}
   - component: {fileID: 114123551528062236}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: player_
   m_TagString: Untagged
   m_Icon: {fileID: 0}

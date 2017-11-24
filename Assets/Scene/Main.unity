@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.43667555, g: 0.4842713, b: 0.5645231, a: 1}
+  m_IndirectSpecularColor: {r: 0.4366757, g: 0.48427194, b: 0.5645252, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -750,6 +750,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e261665f9ece13c47b85c095677e3cfb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ObjectList:
+  - {fileID: 538561664}
+  - {fileID: 1352009968}
+  - {fileID: 1187522990}
+  - {fileID: 986836139}
+  - {fileID: 815499348}
+  - {fileID: 1493659572}
   discriptionUI: {fileID: 424375908}
 --- !u!1 &98073758
 GameObject:
@@ -2698,6 +2705,7 @@ GameObject:
   - component: {fileID: 538561668}
   - component: {fileID: 538561667}
   - component: {fileID: 538561666}
+  - component: {fileID: 538561669}
   m_Layer: 0
   m_Name: Pillar_
   m_TagString: Untagged
@@ -2771,6 +2779,17 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 538561664}
   m_Mesh: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &538561669
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 538561664}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d840fc2a4e16bf4448607ce58288efeb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &546734927 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 100000, guid: b36dbcc8ef8059c4a9c8f753d6b0350b, type: 3}
@@ -3873,6 +3892,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 815499349}
+  - component: {fileID: 815499350}
   m_Layer: 0
   m_Name: DrawerParent_
   m_TagString: Untagged
@@ -3894,6 +3914,17 @@ Transform:
   m_Father: {fileID: 1600301039}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &815499350
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 815499348}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d840fc2a4e16bf4448607ce58288efeb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &834314376
 GameObject:
   m_ObjectHideFlags: 0
@@ -4193,6 +4224,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 986836140}
+  - component: {fileID: 986836141}
   m_Layer: 0
   m_Name: DrawerParent_
   m_TagString: Untagged
@@ -4214,6 +4246,17 @@ Transform:
   m_Father: {fileID: 1600301039}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &986836141
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 986836139}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d840fc2a4e16bf4448607ce58288efeb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &987970993 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 1000010754454028, guid: e053dc897fa5cd74dbc81e55e06a1614,
@@ -5012,7 +5055,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!23 &1128648297
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -5333,6 +5376,7 @@ GameObject:
   - component: {fileID: 1187522994}
   - component: {fileID: 1187522993}
   - component: {fileID: 1187522992}
+  - component: {fileID: 1187522995}
   m_Layer: 0
   m_Name: Pillar_
   m_TagString: Untagged
@@ -5406,6 +5450,17 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1187522990}
   m_Mesh: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1187522995
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1187522990}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d840fc2a4e16bf4448607ce58288efeb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1187867213
 GameObject:
   m_ObjectHideFlags: 0
@@ -6061,6 +6116,7 @@ GameObject:
   - component: {fileID: 1352009972}
   - component: {fileID: 1352009971}
   - component: {fileID: 1352009970}
+  - component: {fileID: 1352009973}
   m_Layer: 0
   m_Name: Pillar_
   m_TagString: Untagged
@@ -6134,6 +6190,17 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1352009968}
   m_Mesh: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1352009973
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1352009968}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d840fc2a4e16bf4448607ce58288efeb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1354059566
 Prefab:
   m_ObjectHideFlags: 0
@@ -6665,6 +6732,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 1493659573}
+  - component: {fileID: 1493659574}
   m_Layer: 0
   m_Name: DrawerParent_
   m_TagString: Untagged
@@ -6686,6 +6754,17 @@ Transform:
   m_Father: {fileID: 1600301039}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1493659574
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1493659572}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d840fc2a4e16bf4448607ce58288efeb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1494431810
 GameObject:
   m_ObjectHideFlags: 0
@@ -8934,7 +9013,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!23 &1920854460
 MeshRenderer:
   m_ObjectHideFlags: 0

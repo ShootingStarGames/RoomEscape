@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class ObjectManager : MonoBehaviour {
+    public GameObject[] ObjectList;
     public GameObject discriptionUI;
     public static ObjectManager instance;
     float speed = 0.2f;
@@ -44,6 +45,7 @@ public class ObjectManager : MonoBehaviour {
         yield return new WaitForSeconds(3f);
         discriptionUI.SetActive(false);
     }
+
     IEnumerator CoroutineSpinOpenObj(GameObject _obj)
     {
         float startTime = Time.time;
@@ -93,6 +95,29 @@ public class ObjectManager : MonoBehaviour {
     }
     #endregion
 
+    public void setObjectList(bool[] _obj)
+    {
+        int i = 0;
+
+        foreach (GameObject obj in ObjectList)
+        {
+            obj.GetComponent<ObjectScript>().InteractiveObj(_obj[i]);
+            i++;
+        }
+    }
+
+    public int getObjectIndex(GameObject _obj)
+    {
+        int i = 0;
+
+        foreach (GameObject obj in ObjectList)
+        {
+            if (obj == _obj)
+               break;
+            i++;
+        }
+        return i;
+    }
     // Use this for initialization
     void Start () {
         if (instance == null)

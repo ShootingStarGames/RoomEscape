@@ -31,11 +31,7 @@ io.on('connection',function(socket) {
 
   var currentPlayer = {};
   var room ={};
-  var ip = {
-    address:socket.request.connection.remoteAddress,
-    port:socket.request.connection.remotePort,
-    name:"unknown"
-  };
+  var object={};
   currentPlayer.name = 'unknown';
 
   socket.on('room list',function(){
@@ -48,11 +44,17 @@ io.on('connection',function(socket) {
     console.log(' recv: player create room, room name: '+ (data.roomName));
     key = ID();
     var members=[];
-    room ={
+    var objectList = [0,0,0,0,0,0];
+    object = {
+      obj:objectList
+    }
+    room = {
       key: key,
       name: data.roomName,
-      members:members
+      members:members,
+      objectList:object
     }
+
 
     roomList.push(room);
     socket.emit('create room',room);
@@ -72,7 +74,7 @@ io.on('connection',function(socket) {
       return;
     }
     for(var i =0;i<roomList[roomIndex].members.length;i++){
-      var playerConnected ={
+      var playerConnected = {
         name:roomList[roomIndex].members[i].name,
         position:roomList[roomIndex].members[i].position,
         rotation:roomList[roomIndex].members[i].rotation,
@@ -85,6 +87,8 @@ io.on('connection',function(socket) {
         socket.emit('rejected room',data);
         return;
       }
+      io.sockets.to(playerConnected.room).emit('object list',roomList[roomIndex].objectList);
+
       socket.emit('other player connected',playerConnected);
       console.log(' emit: other player connected '+playerConnected.name+', '+playerConnected.room);
     }
@@ -124,7 +128,6 @@ io.on('connection',function(socket) {
       socketId:socket.id,
       role:role
     }
-    ip.name = data.name;
     roomList[roomIndex].members.push(currentPlayer);
     socket.join(data.room);
     console.log(" emit: play: "+JSON.stringify(currentPlayer));
@@ -132,12 +135,12 @@ io.on('connection',function(socket) {
     socket.broadcast.to(currentPlayer.room).emit('other player connected',currentPlayer);
   })
 
-  socket.on('player talk',function() {
+/*  socket.on('player talk',function() {
     //console.log('recv: talk: '+JSON.stringify(data));
     socket.broadcast.to(currentPlayer.room).emit('player address',ip);
     //console.log(currentPlayer.name+' bcst: player talk '+JSON.stringify(currentPlayer));
   })
-
+*/
   socket.on('player move',function(data) {
     //console.log('recv: move: '+JSON.stringify(data));
     currentPlayer.position = data.position;
@@ -150,6 +153,12 @@ io.on('connection',function(socket) {
     currentPlayer.rotation = data.rotation;
     socket.broadcast.to(currentPlayer.room).emit('player turn',currentPlayer);
     //console.log(currentPlayer.name+' bcst: player turn '+JSON.stringify(currentPlayer));
+  })
+
+  socket.on('object list',function(data) {
+    console.log('recv: list: '+JSON.stringify(data));
+    room.objectList = data;
+    io.sockets.to(currentPlayer.room).emit('object list',room.objectList);
   })
 
   socket.on('disconnect',function() {

@@ -12,12 +12,13 @@ public class NetworkManager : MonoBehaviour
     public InputField playerNameInput,roomNameInput;
     public GameObject player;
     public SocketIOComponent socket;
-    
+
+    private bool[] ObjectBoolList;
     private static string roomKey;
-    private AddressJson addressJson;
-    private P2PNetworkManager p2pManager;
+    //private AddressJson addressJson;
+    //private P2PNetworkManager p2pManager;
     private string talkAddress = "";
-    private SpeechQueue speechQueue;
+    //private SpeechQueue speechQueue;
     // Use this for initialization
     void Awake()
     {
@@ -30,7 +31,8 @@ public class NetworkManager : MonoBehaviour
 
     private void Start()
     {
-        p2pManager = new P2PNetworkManager();
+        ObjectBoolList = new bool[6];
+        //p2pManager = new P2PNetworkManager();
     }
 
     public static NetworkManager getInstance()
@@ -42,6 +44,8 @@ public class NetworkManager : MonoBehaviour
     {
         //socket.On("player address", OnPlayerAddress);
         socket.On("create room", OnCreateRoom);
+        socket.On("object list", OnObjectSet);
+
         socket.On("room list", OnRoomShowList);
         socket.On("rejected room", OnRejectedRoom);
         socket.On("other player connected", OnOhterPlayerConnected);
@@ -53,7 +57,12 @@ public class NetworkManager : MonoBehaviour
 
         socket.On("ClickEvent", MClickEvent);
     }
-    
+
+    public bool[] getObjectBoolList()
+    {
+        return ObjectBoolList;
+    }
+    #region etc
     //void OnApplicationQuit()
     //{
     //    p2pManager.Dispose();
@@ -85,34 +94,35 @@ public class NetworkManager : MonoBehaviour
         StartCoroutine(CheckRoom(_roomKey));
     }
 
-    IEnumerator SpeechOther()
-    {
-        while (true)
-        {
-            if (speechQueue.Check())
-            {
-                float[] _buffer = speechQueue.Pop();
-                GameObject o = GameObject.Find(addressJson.name) as GameObject;
-                if (o != null)
-                {
-                    AudioSource audioSource = o.GetComponent<AudioSource>();
-                    audioSource.clip.SetData(_buffer, 0);
-                }
-                else
-                {
-                    StopCoroutine(SpeechOther());
-                }
-            }
-            yield return new WaitForSeconds(1);
-        }
-    }
+    //IEnumerator SpeechOther()
+    //{
+    //    while (true)
+    //    {
+    //        if (speechQueue.Check())
+    //        {
+    //            float[] _buffer = speechQueue.Pop();
+    //            GameObject o = GameObject.Find(addressJson.name) as GameObject;
+    //            if (o != null)
+    //            {
+    //                AudioSource audioSource = o.GetComponent<AudioSource>();
+    //                audioSource.clip.SetData(_buffer, 0);
+    //            }
+    //            else
+    //            {
+    //                StopCoroutine(SpeechOther());
+    //            }
+    //        }
+    //        yield return new WaitForSeconds(1);
+    //    }
+    //}
+    #endregion
 
     #region Commands
     IEnumerator CreateToRoom()
     {
         if (IsCorrectCompanyName(roomNameInput.text) && IsCorrectCompanyName(playerNameInput.text))
         {
-            string data = JsonUtility.ToJson(new RoomJson(roomNameInput.text, "",""));
+            string data = JsonUtility.ToJson(new RoomJSON(roomNameInput.text, "",""));
             socket.Emit("create room", new JSONObject(data));
             yield return new WaitForSeconds(0.1f);
             JoinRoom(roomKey);
@@ -126,7 +136,7 @@ public class NetworkManager : MonoBehaviour
 
         if (IsCorrectCompanyName(playerName))
         {
-            string data = JsonUtility.ToJson(new RoomJson(roomNameInput.text, _roomKey, playerName));
+            string data = JsonUtility.ToJson(new RoomJSON(roomNameInput.text, _roomKey, playerName));
             socket.Emit("player connect room", new JSONObject(data));
         }
         yield return null;
@@ -164,16 +174,17 @@ public class NetworkManager : MonoBehaviour
         socket.Emit("player turn", new JSONObject(data));
     }
 
-    //public void SendVoice(float[] _audio)
-    //{
-    //    if (addressJson != null && p2pManager.GetConnect())
-    //        p2pManager.Send(_audio);
-    //}
-
-    public void StartChat()
+    public void SendObject(int i)
     {
-        socket.Emit("player talk");
+        ObjectBoolList[i] = !ObjectBoolList[i];
+        string data = JsonUtility.ToJson(new ObjectJSON(ObjectBoolList));
+        socket.Emit("object list", new JSONObject(data));
     }
+
+    //public void StartChat()
+    //{
+    //    socket.Emit("player talk");
+    //}
 
     public void Disconect()
     {
@@ -183,6 +194,12 @@ public class NetworkManager : MonoBehaviour
         UIManager.instance.CloseStopPanel();
         Destroy(GameObject.Find(playerNameInput.text));
     }
+
+    //public void SendVoice(float[] _audio)
+    //{
+    //    if (addressJson != null && p2pManager.GetConnect())
+    //        p2pManager.Send(_audio);
+    //}
     #endregion
 
     #region Listening
@@ -193,12 +210,6 @@ public class NetworkManager : MonoBehaviour
     //        speechQueue.Push(_buffer);
     //    }
     //}
-
-    void MClickEvent(SocketIOEvent socketIOEvent)
-    {
-        string data = socketIOEvent.data.ToString();
-        Debug.Log(data);
-    }
 
     //void OnPlayerAddress(SocketIOEvent socketIOEvent)
     //{
@@ -218,12 +229,25 @@ public class NetworkManager : MonoBehaviour
     //    }
     //}
 
+    void MClickEvent(SocketIOEvent socketIOEvent)
+    {
+        string data = socketIOEvent.data.ToString();
+        Debug.Log(data);
+    }
+
     void OnRejectedRoom(SocketIOEvent socketIOEvent)
     {
         print("OnRejectedRoom");
         UIManager.instance.OpenRoomPanel();
         UIManager.instance.ClosePlayerPanel();
         UIManager.instance.CloseStopPanel();
+    }
+
+    void OnObjectSet(SocketIOEvent socketIOEvent)
+    {
+        string data = socketIOEvent.data.ToString();
+        ObjectJSON objectJSON = ObjectJSON.CreateFromJson(data);
+        ObjectManager.instance.setObjectList(objectJSON.obj);
     }
 
     void OnPlayerConneted(SocketIOEvent socketIOEvent)
@@ -328,36 +352,51 @@ public class NetworkManager : MonoBehaviour
     {
         string data = socketIOEvent.data.ToString();
         UserJSON userJSON = UserJSON.CreateFromJson(data);
-        addressJson = null;
+        //addressJson = null;
         Destroy(GameObject.Find(userJSON.name));
-        StopCoroutine(SpeechOther());
+        //StopCoroutine(SpeechOther());
     }
     #endregion
 
     #region MessageClass
-    [SerializeField]
-    public class AddressJson
-    {
-        public string address;
-        public int port;
-        public string name;
+    //[SerializeField]
+    //public class AddressJson
+    //{
+    //    public string address;
+    //    public int port;
+    //    public string name;
 
-        public AddressJson(string _address, int _port,string _name)
+    //    public AddressJson(string _address, int _port,string _name)
+    //    {
+    //        address = _address;
+    //        port = _port;
+    //        name = _name;
+    //    }
+    //}
+
+    [SerializeField]
+    public class ObjectJSON
+    {
+        public bool[] obj;
+
+        public ObjectJSON(bool[] _obj)
         {
-            address = _address;
-            port = _port;
-            name = _name;
+            obj = _obj;
+        }
+        public static ObjectJSON CreateFromJson(string data)
+        {
+            return JsonUtility.FromJson<ObjectJSON>(data);
         }
     }
 
     [SerializeField]
-    public class RoomJson
+    public class RoomJSON
     {
         public string roomName;
         public string key;
         public string name;
 
-        public RoomJson(string _roomName, string _key,string _name)
+        public RoomJSON(string _roomName, string _key,string _name)
         {
             roomName = _roomName;
             key = _key;
