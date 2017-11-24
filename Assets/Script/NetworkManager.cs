@@ -17,7 +17,7 @@ public class NetworkManager : MonoBehaviour
     private static string roomKey;
     //private AddressJson addressJson;
     //private P2PNetworkManager p2pManager;
-    private string talkAddress = "";
+    //private string talkAddress = "";
     //private SpeechQueue speechQueue;
     // Use this for initialization
     void Awake()
@@ -245,8 +245,10 @@ public class NetworkManager : MonoBehaviour
 
     void OnObjectSet(SocketIOEvent socketIOEvent)
     {
+        print("OnObjectSet");
         string data = socketIOEvent.data.ToString();
         ObjectJSON objectJSON = ObjectJSON.CreateFromJson(data);
+        ObjectBoolList = (bool[])objectJSON.obj.Clone();
         ObjectManager.instance.setObjectList(objectJSON.obj);
     }
 

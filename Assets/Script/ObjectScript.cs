@@ -5,6 +5,8 @@ using UnityEngine;
 public class ObjectScript : MonoBehaviour {
     float speed = 0.2f;
 
+    bool on = false;
+
     public void InteractiveObj(bool b)
     {
         if (this.name == "Pillar_")
@@ -46,7 +48,8 @@ public class ObjectScript : MonoBehaviour {
     {
         float startTime = Time.time;
         float currentTime;
-        while (_obj.transform.eulerAngles.y != 90)
+        on = true;
+        while (_obj.transform.eulerAngles.y != 90 && on)
         {
             currentTime = Time.time - startTime;
             _obj.transform.rotation = Quaternion.Lerp(_obj.transform.rotation, Quaternion.Euler(0, 90, 0), currentTime * speed);
@@ -58,7 +61,8 @@ public class ObjectScript : MonoBehaviour {
     {
         float startTime = Time.time;
         float currentTime;
-        while (_obj.transform.eulerAngles.y != 0)
+        on = false;
+        while (_obj.transform.eulerAngles.y != 0 &&! on)
         {
             currentTime = Time.time - startTime;
             _obj.transform.rotation = Quaternion.Lerp(_obj.transform.rotation, Quaternion.Euler(0, 0, 0), currentTime * speed);
@@ -70,7 +74,8 @@ public class ObjectScript : MonoBehaviour {
     {
         float startTime = Time.time;
         float currentTime;
-        while (_obj.transform.localPosition.z != 0.2f)
+        on = true;
+        while (_obj.transform.localPosition.z != 0.2f && on)
         {
             currentTime = Time.time - startTime;
             _obj.transform.localPosition = Vector3.Lerp(_obj.transform.localPosition, new Vector3(0, 0, 0.2f), currentTime * speed * 2);
@@ -82,7 +87,8 @@ public class ObjectScript : MonoBehaviour {
     {
         float startTime = Time.time;
         float currentTime;
-        while (_obj.transform.localPosition.z != 0)
+        on = false;
+        while (_obj.transform.localPosition.z != 0 && !on)
         {
             currentTime = Time.time - startTime;
             _obj.transform.localPosition = Vector3.Lerp(_obj.transform.localPosition, new Vector3(0, 0, 0), currentTime * speed * 2);

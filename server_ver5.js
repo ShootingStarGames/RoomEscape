@@ -87,11 +87,11 @@ io.on('connection',function(socket) {
         socket.emit('rejected room',data);
         return;
       }
-      io.sockets.to(playerConnected.room).emit('object list',roomList[roomIndex].objectList);
 
       socket.emit('other player connected',playerConnected);
       console.log(' emit: other player connected '+playerConnected.name+', '+playerConnected.room);
     }
+    socket.emit('object list',roomList[roomIndex].objectList);
     socket.emit('player connected',data);
   })
 
@@ -156,7 +156,7 @@ io.on('connection',function(socket) {
   })
 
   socket.on('object list',function(data) {
-    console.log('recv: list: '+JSON.stringify(data));
+    //console.log('recv: list: '+JSON.stringify(data));
     room.objectList = data;
     io.sockets.to(currentPlayer.room).emit('object list',room.objectList);
   })
@@ -180,7 +180,7 @@ io.on('connection',function(socket) {
     if(roomList[roomIndex].members.length === 0)
     {
       roomList.splice(roomIndex,1);
+      io.sockets.emit('room list',{roomList});
     }
-    io.sockets.emit('room list',{roomList});
   })
 })
