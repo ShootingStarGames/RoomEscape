@@ -3,9 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class ObjectScript : MonoBehaviour {
+
+    public int index;
+
     float speed = 0.2f;
 
     bool on = false;
+    bool draged = false;
+    public bool locked = true;
+    private Camera camera;
 
     public void InteractiveObj(bool b)
     {
@@ -33,16 +39,6 @@ public class ObjectScript : MonoBehaviour {
             }
         }
     }
-
-    //IEnumerator DiscriptionUI(GameObject _obj)
-    //{
-    //    discriptionUI.SetActive(true);
-    //    Transform child = discriptionUI.transform.GetChild(0);
-    //    child.GetComponent<UnityEngine.UI.Text>().text = "안뇽하세요!!!";
-
-    //    yield return new WaitForSeconds(3f);
-    //    discriptionUI.SetActive(false);
-    //}
 
     IEnumerator CoroutineSpinOpenObj(GameObject _obj)
     {
@@ -96,6 +92,49 @@ public class ObjectScript : MonoBehaviour {
         }
     }
 
+    public void free()
+    {
+        locked = false;
+    }
+    public void locking()
+    {
+        locked = true;
+    }
+    public int getIndex()
+    {
+        return index;
+    }
+
+    public void ActiveObject()
+    {
+        if (locked)
+            return;
+        NetworkManager.instance.SendObject(index);
+    }
+
+    public void Drag(Camera camera)
+    {
+        this.camera = camera;
+        draged = true;
+    }
+    public void Drop()
+    {
+        draged = false;
+    }
+
+    private void Dragging()
+    {
+        transform.position = this.camera.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, 1f));
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.tag == "lockObj")
+        {
+            collision.transform.parent.gameObject.SendMessage("free");
+            Destroy(this.gameObject);
+        }
+    }
     // Use this for initialization
     void Start () {
 		
@@ -103,6 +142,9 @@ public class ObjectScript : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		
-	}
+        if(draged)
+            Dragging();
+        if (transform.position.y <= -10)
+            transform.position = new Vector3(8, 2,5);
+    }
 }

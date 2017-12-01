@@ -180,7 +180,7 @@ public class NetworkManager : MonoBehaviour
         string data = JsonUtility.ToJson(new ObjectJSON(ObjectBoolList));
         socket.Emit("object list", new JSONObject(data));
     }
-
+     
     //public void StartChat()
     //{
     //    socket.Emit("player talk");

@@ -21,7 +21,7 @@ public class ControllManager : MonoBehaviour {
     Quaternion currentRotation, oldRotation;
     float rotationY = 0F;
     GameObject obj;
-    
+    GameObject myObj;
     #region Controll
     void InputFunc()
     {
@@ -94,35 +94,43 @@ public class ControllManager : MonoBehaviour {
 
     void InputMouseClick()
     {
+        if (Input.GetMouseButton(0))
+        {
+            RaycastHit hitInfo = new RaycastHit();
+            float distance = 1f;
+            Ray ray = myCamera.ScreenPointToRay(Input.mousePosition);
+            if (Physics.Raycast(ray, out hitInfo, distance))
+            {
+                switch (hitInfo.transform.gameObject.name)
+                {
+                    case "Key_":
+                        myObj = hitInfo.transform.gameObject;
+                        myObj.GetComponent<ObjectScript>().Drag(myCamera);
+                        break;
+                    default:
+                        break;
+                }
+            }
+        }
+        if (Input.GetMouseButtonUp(0))
+        {
+            if (myObj != null)
+            {
+                myObj.GetComponent<ObjectScript>().Drop();
+            }
+        }
         if (Input.GetKeyDown(KeyCode.E)) // press E button
         {
             RaycastHit hitInfo = new RaycastHit();
             float distance = 1f;
             Ray ray = myCamera.ScreenPointToRay(Input.mousePosition);
-            int index = 0;
             if (Physics.Raycast(ray, out hitInfo, distance))
             {
                 switch (hitInfo.transform.gameObject.name)
                 {
-                    case "Door_":
-                        obj = hitInfo.transform.parent.gameObject;
-                        index = ObjectManager.instance.getObjectIndex(obj);
-                        NetworkManager.instance.SendObject(index);
-
-                        //if (obj.transform.eulerAngles.y == 0 && t1door)
-                        //    ObjectManager.instance.SpinOpenObj(obj);
-                        //else if (obj.transform.eulerAngles.y == 90)
-                        //    ObjectManager.instance.SpinCloseObj(obj);
-                        break;
                     case "Drawer_":
                         obj = hitInfo.transform.parent.gameObject;
-                        index = ObjectManager.instance.getObjectIndex(obj);
-                        NetworkManager.instance.SendObject(index);
-
-                        //if (obj.transform.localPosition.z == 0)
-                        //    ObjectManager.instance.DrawOpenObj(obj);
-                        //else if (obj.transform.localPosition.z == 0.2f)
-                        //    ObjectManager.instance.DrawCloseObj(obj);
+                        obj.GetComponent<ObjectScript>().ActiveObject();
                         break;
                     default:
                         break;
@@ -130,35 +138,6 @@ public class ControllManager : MonoBehaviour {
             }
         }
 
-        //if (Input.GetMouseButtonDown(0))
-        //{
-        //    RaycastHit hitInfo = new RaycastHit();
-        //    float distance = 1f;
-        //    Ray ray = myCamera.ScreenPointToRay(Input.mousePosition);
-        //    if (Physics.Raycast(ray, out hitInfo, distance))
-        //    {
-        //        switch (hitInfo.transform.gameObject.name)
-        //        {
-        //            case "table_":
-        //                obj = hitInfo.transform.gameObject;
-        //                if (obj.transform.eulerAngles.y == 0) { 
-        //                    ObjectManager.instance.SpinOpenObj(obj);
-        //                    t1door = true;
-        //                }
-        //                else if (obj.transform.eulerAngles.y == 90) { 
-        //                    ObjectManager.instance.SpinCloseObj(obj);
-        //                    t1door = false;
-        //                }
-        //                break;
-        //            case "st1_memo1_":
-        //                obj = hitInfo.transform.gameObject;
-        //                ObjectManager.instance.OpenDiscription(obj);
-        //                break;
-        //            default:
-        //                break;
-        //        }
-        //    }
-        //}
     }
     #endregion
     // Use this for initialization

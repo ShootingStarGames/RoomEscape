@@ -8,6 +8,9 @@ public class UIManager : MonoBehaviour {
     public static UIManager instance;
     public InputField inputField;
     public GameObject startPanel, roomPanel, playerPanel, stopPanel;
+    public InputField quizField;
+    public GameObject quizObjet;
+
     string playerName;
     void Awake()
     {
@@ -61,12 +64,22 @@ public class UIManager : MonoBehaviour {
     public void BackToPlay()
     {
         playerName = inputField.text;
-        Debug.Log(playerName);
         GameObject p = GameObject.Find(playerName) as GameObject;
         CloseStopPanel();
         OpenPlayerPanel();
         p.GetComponent<ControllManager>().isMine = true;
         Screen.lockCursor = true;
+    }
+    
+    public void BackFromQuiz()
+    {
+        Screen.lockCursor = true;
+        string s = "154";
+        if (quizField.text == s)
+        {
+            quizObjet.GetComponent<ObjectScript>().locked = false;
+            quizObjet.GetComponent<ObjectScript>().ActiveObject();
+        }
     }
 
     public void ExitGame()

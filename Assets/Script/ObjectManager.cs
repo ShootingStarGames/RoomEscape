@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class ObjectManager : MonoBehaviour {
-    public GameObject[] ObjectList;
+    public GameObject[] ObjectList; // on off obejct;
+
     public GameObject discriptionUI;
     public static ObjectManager instance;
     float speed = 0.2f;
@@ -56,18 +57,6 @@ public class ObjectManager : MonoBehaviour {
         }
     }
 
-    public int getObjectIndex(GameObject _obj)
-    {
-        int i = 0;
-
-        foreach (GameObject obj in ObjectList)
-        {
-            if (obj == _obj)
-               break;
-            i++;
-        }
-        return i;
-    }
     // Use this for initialization
     void Start () {
         if (instance == null)
